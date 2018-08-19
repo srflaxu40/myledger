@@ -7,4 +7,4 @@
 `./run.sh`
 
 ## Run React App:
-`./myledger-client/run.sh1`
+`./myledger-client/run.sh`
