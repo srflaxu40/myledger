@@ -1,10 +1,23 @@
 # myledger
 
 ## Developer Setup:
-`npm install`
+
+* Install Express and NodeJS modules:
+```
+cd ./myledger
+npm install
+```
+
+* Install ReactJS app modules:
+```
+cd ./myledge-client
+npm install
+```
 
 ## Run Express App:
-`./run.sh`
+```
+./myledger/run.sh
+```
 
 ## Run React App:
 `./myledger-client/run.sh`
