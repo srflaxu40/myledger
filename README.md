@@ -10,7 +10,7 @@ npm install
 
 * Install ReactJS app modules:
 ```
-cd ./myledge-client
+cd ./myledger-client
 npm install
 ```
 
