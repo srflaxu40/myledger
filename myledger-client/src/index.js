@@ -1,8 +1,21 @@
+import registerServiceWorker from './registerServiceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import Login from './components/Login';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const Root = () => {
+
+  return (
+    <div className="base">
+      <Router history={Router}>
+        <Route path="/" component={Login}/>
+      </Router>
+    </div>
+  )
+}
+
+ReactDOM.render(<Root />, document.getElementById('root'));
 registerServiceWorker();

@@ -26,3 +26,15 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.banner {
+  min-height: 50px;
+}
+
+.base {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
