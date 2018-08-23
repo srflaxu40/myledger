@@ -14,10 +14,6 @@ class Login extends Component {
   }
 
   handleInput(event) {
-    //const target = event.target
-    // this.setState({
-    //  [target.name]: target.value
-    //})
     console.log("testicles");
     this.props.push(`${this.state.where}`)
     const Root = () => {
@@ -25,7 +21,7 @@ class Login extends Component {
       return (
         <div className="base">
           <Router history={Router}>
-            <Route path="/" component={Welcome}/>
+            <Route path="/welcome" component={Welcome}/>
           </Router>
         </div>
       )
