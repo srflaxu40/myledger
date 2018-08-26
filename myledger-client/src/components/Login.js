@@ -10,30 +10,6 @@ class Login extends Component {
 
   constructor(props) {
     super(props)
-
-    this.handleInput  = this.handleInput.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  handleInput(event) {
-    this.props.push(`${this.state.where}`)
-    const Root = () => {
-
-      return (
-        <div className="base">
-          <Router history={Router}>
-            <Route path="/welcome" component={Welcome}/>
-          </Router>
-        </div>
-      )
-    }
-
-    ReactDOM.render(<Root />, document.getElementById('root'));
-  }  
-
-  handleSubmit(event) {
-    event.preventDefault()
-    ReactDOM.render(<Welcome />, document.getElementById('root'));
   }
 
   render() {
@@ -49,16 +25,26 @@ class Login extends Component {
     }
 
     return (
-       <div>
-       <div className="banner p-3 mb-2 bg-primary"></div>
-        <form>
+       <div className="loginDiv">
+       <div className="bg-primary banner">MyLedger</div>
+        <form className="login">
+          <FormGroup>
+            <Label for="exampleEmail" hidden>Email</Label>
+            <Input type="email" name="email" id="exampleEmail" placeholder="Email" />
+          </FormGroup>
+          {' '}
+          <FormGroup>
+            <Label for="examplePassword" hidden>Password</Label>
+            <Input type="password" name="password" id="examplePassword" placeholder="Password" />
+          </FormGroup>
+          {' '}
           <FormGroup>
             <GoogleLogin
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-              buttonText="Login"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
-              className="button"
+              buttonText=""
+              className="google"
             />
           </FormGroup>
         </form>

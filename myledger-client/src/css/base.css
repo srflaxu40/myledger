@@ -29,8 +29,15 @@
 
 .banner {
   min-height: 50px;
+  width: 80%;
+  margin: 1em auto 1em  auto;
+  padding-left: .5em;
   grid-template-columns: 100px 100px 100px 100px 100px;
   grid-template-rows:    100px 100px 100px 100px;
+  font-family: cursive;
+  font-size: 28px;
+  color: white;
+  font-weight: bold;
 }
 
 .base {
@@ -40,3 +47,27 @@
   overflow: auto;
 }
 
+.google {
+  background-image: url("../images/btn_google_signin_dark_pressed_web@2x.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 9em;
+  height: 3em;
+  cursor: pointer;
+}
+
+.login {
+  min-height: 50px;
+  width: 80%;
+  margin: 0 auto;
+  grid-template-columns: 100px 100px 100px 100px 100px;
+  grid-template-rows:    100px 100px 100px 100px;
+  font-family: "Helvetica Neue,Helvetica,Arial,sans-serif";
+}
+
+.loginDiv {
+  margin: 10% auto 1em auto;
+  border: 1px solid;
+  border-color: #E1E1E0;
+  width: 20%;
+}
