@@ -8,10 +8,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Root = () => {
 
+  console.log(process.env.REACT_APP_HOST);
   return (
     <div className="base">
       <Router history={Router}>
-        <Route path="/" component={Login}/>
+        <div>
+          <Route path="/" component={Login}/>
+        </div>
       </Router>
     </div>
   )

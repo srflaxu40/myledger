@@ -4,17 +4,18 @@ import '../css/base.css';
 import Welcome from './Welcome';
 import ReactDOM from 'react-dom';
 import { Route, Router } from 'react-router-dom';
+import { GoogleLogin } from 'react-google-login';
 
 class Login extends Component {
 
   constructor(props) {
     super(props)
 
-    this.handleInput = this.handleInput.bind(this)
+    this.handleInput  = this.handleInput.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleInput(event) {
-    console.log("testicles");
     this.props.push(`${this.state.where}`)
     const Root = () => {
 
@@ -32,31 +33,31 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    // do some sort of verification here if you need to
-    console.log("testicles");
-
     ReactDOM.render(<Welcome />, document.getElementById('root'));
   }
 
   render() {
+
+    const responseGoogle = (response) => {
+      if ( !response.googleId ) {
+          console.log("login");
+          ReactDOM.render(<Login />, document.getElementById('root')); 
+      } else {
+          console.log("welcome");
+          ReactDOM.render(<Welcome />, document.getElementById('root')); 
+      }
+    }
+
     return (
        <div>
        <div className="banner p-3 mb-2 bg-primary"></div>
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <FormGroup>
-            <Label for="exampleEmail" hidden>Email</Label>
-            <Input type="email" name="email" id="exampleEmail" placeholder="Email" />
-          </FormGroup>
-          {' '}
-          <FormGroup>
-            <Label for="examplePassword" hidden>Password</Label>
-            <Input type="password" name="password" id="examplePassword" placeholder="Password" />
-          </FormGroup>
-          {' '}
-          <FormGroup>
-            <input
-              type='submit'
-              name='submit'
+            <GoogleLogin
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
               className="button"
             />
           </FormGroup>
