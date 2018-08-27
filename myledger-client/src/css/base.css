@@ -34,7 +34,7 @@
   padding-left: .5em;
   grid-template-columns: 100px 100px 100px 100px 100px;
   grid-template-rows:    100px 100px 100px 100px;
-  font-family: cursive;
+  font-family: cursive, Helvetica,Arial,sans-serif;
   font-size: 28px;
   color: white;
   font-weight: bold;
@@ -47,6 +47,10 @@
   overflow: auto;
 }
 
+.formGroup {
+  border-radius: 0 !important;
+}
+
 .google {
   background-image: url("../images/btn_google_signin_dark_pressed_web@2x.png");
   background-repeat: no-repeat;
@@ -54,6 +58,24 @@
   width: 9em;
   height: 3em;
   cursor: pointer;
+}
+
+.grid-container {
+  display: grid;
+  height: 100%;
+}
+
+.grid-item {
+  border: 1px solid;
+  background-color: #007bff;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: green;
 }
 
 .login {
@@ -69,5 +91,19 @@
   margin: 10% auto 1em auto;
   border: 1px solid;
   border-color: #E1E1E0;
+  border-top-color: #007bff;
   width: 20%;
+}
+
+.logout {
+  cursor: pointer;
+}
+
+.submit {
+  background-size: 100% 100%;
+  width: 9em;
+  height: 3em;
+  color: white !important;
+  cursor: pointer;
+  font-family: "Helvetica Neue,Helvetica,Arial,sans-serif";
 }

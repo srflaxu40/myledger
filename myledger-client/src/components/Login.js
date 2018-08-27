@@ -3,22 +3,26 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import '../css/base.css';
 import Welcome from './Welcome';
 import ReactDOM from 'react-dom';
-import { Route, Router } from 'react-router-dom';
+import { Route, BrowserRouter, Router } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
 class Login extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = { googleId: "" };
   }
 
   render() {
 
     const responseGoogle = (response) => {
-      if ( !response.googleId ) {
+      console.log(this.state.googleId);
+      if ( !response.googleId && !this.state.googleId ) {
           console.log("login");
           ReactDOM.render(<Login />, document.getElementById('root')); 
       } else {
+          this.setState({ googleId: response.googleId });
+          console.log(this.state.googleId);
           console.log("welcome");
           ReactDOM.render(<Welcome />, document.getElementById('root')); 
       }
@@ -30,12 +34,12 @@ class Login extends Component {
         <form className="login">
           <FormGroup>
             <Label for="exampleEmail" hidden>Email</Label>
-            <Input type="email" name="email" id="exampleEmail" placeholder="Email" />
+            <Input className="formGroup" type="email" name="email" id="exampleEmail" placeholder="Email" />
           </FormGroup>
           {' '}
           <FormGroup>
-            <Label for="examplePassword" hidden>Password</Label>
-            <Input type="password" name="password" id="examplePassword" placeholder="Password" />
+            <Label for="Password" hidden>Password</Label>
+            <Input className="formGroup" type="password" name="password" id="Password" placeholder="Password" />
           </FormGroup>
           {' '}
           <FormGroup>
@@ -44,9 +48,14 @@ class Login extends Component {
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
               buttonText=""
-              className="google"
+              className="formGroup google"
             />
           </FormGroup>
+          {' '}
+          <FormGroup>
+            <Input className="formGroup submit bg-primary" type="submit" value="Submit"/>
+          </FormGroup>
+          {' '}
         </form>
        </div>
     );
