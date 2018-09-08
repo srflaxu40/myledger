@@ -1,33 +1,45 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { FormGroup, Label, Input } from 'reactstrap';
 import '../css/base.css';
 import Welcome from './Welcome';
 import ReactDOM from 'react-dom';
-import { Route, BrowserRouter, Router } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux';
+
+import id from '../store/auth/reducers'
+import {set_id, googleLoginSuccess, googleLoginFailure} from '../store/auth/actions';
+
+//import { set_id } from '../store/auth/actions'
+//import { createStore } from 'redux'
+//import { Provider } from 'react-redux'
+const mapStateToProps = (state) => ({
+    state: state
+});
+
+const mapDispatchToProps = (dispatch) =>
+    bindActionCreators({set_id, googleLoginSuccess, googleLoginFailure}, dispatch)
+
+
 class Login extends Component {
+  componentDidMount() {}
 
   constructor(props) {
     super(props);
     this.state = { googleId: "" };
   }
 
+  handleSuccessfulLogin = (payload) => {
+    this.props.googleLoginSuccess(payload);
+    console.log(payload.googleId);
+    this.props.set_id(payload.googleId);
+    window.localStorage.setItem('googleId', payload.googleId);
+    this.props.history.push('/welcome');
+  }
+
   render() {
-
-    const responseGoogle = (response) => {
-      console.log(this.state.googleId);
-      if ( !response.googleId && !this.state.googleId ) {
-          console.log("login");
-          ReactDOM.render(<Login />, document.getElementById('root')); 
-      } else {
-          this.setState({ googleId: response.googleId });
-          console.log(this.state.googleId);
-          console.log("welcome");
-          ReactDOM.render(<Welcome />, document.getElementById('root')); 
-      }
-    }
-
+  
     return (
        <div className="loginDiv">
        <div className="bg-primary banner">MyLedger</div>
@@ -45,8 +57,8 @@ class Login extends Component {
           <FormGroup>
             <GoogleLogin
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
+              onSuccess={this.handleSuccessfulLogin}
+              onFailure={this.props.googleLoginFailure}
               buttonText=""
               className="formGroup google"
             />
@@ -62,4 +74,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -3,10 +3,28 @@ import '../css/base.css';
 import { GoogleLogout } from 'react-google-login';
 import Login from './Login';
 import ReactDOM from 'react-dom';
-import Grid from 'react-css-grid'
+import Grid from 'react-css-grid';
+
+import * as Actions from '../store/auth/actions'
+
+
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux';
+
+const mapStateToProps = (state, props) => ({
+    state: state
+}); 
+
+const mapDispatchToProps = (dispatch) => (
+    bindActionCreators(Actions, dispatch)
+);
+
 
 class Welcome extends Component {
-
+  componentDidMount() {
+    var googleId = window.localStorage.getItem('googleId');
+    this.props.set_id(googleId);
+  }
 
   render() {
 
@@ -39,4 +57,7 @@ class Welcome extends Component {
   }
 }
 
-export default Welcome;
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Welcome);
