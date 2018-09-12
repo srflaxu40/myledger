@@ -21,6 +21,12 @@ const mapDispatchToProps = (dispatch) => (
 
 
 class Welcome extends Component {
+  componentWillMount() {
+    if ( ! window.localStorage.getItem('googleId') ) {
+      this.props.history.push('/');
+    }
+  }
+
   componentDidMount() {
     var googleId = window.localStorage.getItem('googleId');
     this.props.set_id(googleId);

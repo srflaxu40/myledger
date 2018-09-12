@@ -11,9 +11,6 @@ import {bindActionCreators} from 'redux';
 import id from '../store/auth/reducers'
 import {set_id, googleLoginSuccess, googleLoginFailure} from '../store/auth/actions';
 
-//import { set_id } from '../store/auth/actions'
-//import { createStore } from 'redux'
-//import { Provider } from 'react-redux'
 const mapStateToProps = (state) => ({
     state: state
 });
@@ -31,6 +28,24 @@ class Login extends Component {
   }
 
   handleSuccessfulLogin = (payload) => {
+    fetch('/auth/jwt', {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, cors, *same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, same-origin, *omit
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        redirect: "follow", // manual, *follow, error
+        referrer: "no-referrer", // no-referrer, *client
+        body: JSON.stringify(payload), // body data type must match "Content-Type" header
+      })
+      .then(res => {
+          console.log(res);
+          return res.json()
+      });
+
     this.props.googleLoginSuccess(payload);
     console.log(payload.googleId);
     this.props.set_id(payload.googleId);
