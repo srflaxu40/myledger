@@ -14,6 +14,8 @@ import id from './store/auth/reducers'
 //import * as actions from './store/auth/actions';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/react-grid-layout/css/styles.css';
+import '../node_modules/react-resizable/css/styles.css';
 
 const store = createStore(id)
 
