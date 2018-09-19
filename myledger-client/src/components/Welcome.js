@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/base.css';
+import '../css/welcome.css';
 import { GoogleLogout } from 'react-google-login';
 
 import GridLayout from 'react-grid-layout';
@@ -52,48 +53,72 @@ class Welcome extends Component {
     var width = window.innerWidth;
 
     var layout = [
-      {i: 'a', x: 0, y: 0, w: 1, h: 2, static: true},
-      {i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
+      {i: 'a', x: 0, y: 0, w: 1, h: 2},
+      {i: 'b', x: 1, y: 0, w: 3, h: 2},
       {i: 'c', x: 4, y: 0, w: 1, h: 2}
     ];
 
     const logout = () => {
+      console.log("here");
       this.clearTokens("jwt");
       this.props.history.push('/');
     }
 
     return (
-      <Tabs>
-        <TabList>
-          <Tab>Title 1</Tab>
-          <Tab>Title 2</Tab>
+      <div className="body-div">
+       <Tabs>
+        <TabList className="welcome-tabs">
+          <Tab className="tabs">Portolio</Tab>
+          <Tab className="tabs">Profile</Tab>
+          <Tab className="tabs">Stocks</Tab>
+          <Tab className="tabs">Bonds</Tab>
+          <Tab className="tabs">Wallet</Tab>
+          <Tab className="tabs">News</Tab>
+          <Tab className="tabs">Market</Tab>
         </TabList>
-    
         <TabPanel>
-          <h2>Any content 1</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 2</h2>
-        </TabPanel>
-      <div className="grid-container">
-        <GridLayout className="layout" layout={layout} cols={12} rowHeight={30} width={width}>
-         <div key="a" className="grid-item">Column</div>
-         <div key="b" className="grid-item">Column</div>
-         <div key="c" className="grid-item">Column</div>
-         <div className="grid-item">
-             <GoogleLogout
-                buttonText="Logout"
-                onLogoutSuccess={logout}
-                className="button p-3 mb-2 bg-primary logout submit"
-             >
-           </GoogleLogout>
+         {/* Portfolio */}
+         <div className="grid-container">
+          <GridLayout className="layout" layout={layout} cols={12} rowHeight={30} width={width}>
+           <div key="a" className="grid-item">
+               <GoogleLogout
+                  buttonText="Logout"
+                  onLogoutSuccess={logout}
+                  className="button p-3 mb-2 bg-primary logout submit grid-item"
+               >
+             </GoogleLogout>
+           </div>
+           <div key="b" className="grid-item">Column</div>
+           <div key="c" className="grid-item">Column</div>
+          </GridLayout>
          </div>
-         <div className="grid-item">Column</div>
-         <div className="grid-item">Column</div>
-         <div className="grid-item">Column</div>
-        </GridLayout>
+        </TabPanel>
+        <TabPanel>
+          {/* Profile */}
+          <h2>Profile</h2>
+        </TabPanel>
+        <TabPanel>
+          {/* Stocks */}
+          <h2>Stocks</h2>
+        </TabPanel>
+        <TabPanel>
+          {/* Bonds */}
+          <h2>Bonds</h2>
+        </TabPanel>
+        <TabPanel>
+          {/* Wallet */}
+          <h2>Wallet</h2>
+        </TabPanel>
+        <TabPanel>
+          {/* News */}
+          <h2>News</h2>
+        </TabPanel>
+        <TabPanel>
+          {/* Market */}
+          <h2>Market</h2>
+        </TabPanel>
+       </Tabs>
       </div>
-      </Tabs>
     );
   }
 }

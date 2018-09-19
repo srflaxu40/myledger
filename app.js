@@ -1,3 +1,11 @@
+'use strict'
+
+const Tracer = require('@risingstack/jaeger')
+const tracer = new Tracer({
+  serviceName: 'myledger'
+});
+console.log("HERE WE GO");
+
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config({path: __dirname + '/.env'});
