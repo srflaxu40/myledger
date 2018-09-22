@@ -1,9 +1,53 @@
+.addButton {
+  width: 4em;
+  height: 2.3em;
+  padding-top: .5em;
+  background: none;
+  border: none;
+  float: left;
+}
 
+.addButton img {
+  height: 100%;
+  width: 50%;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: auto;
+  padding-right: auto;
+}
+
+.button-div {
+  height: 2.5em;
+  width: 100%;
+}
+
+.popup-div {
+  height: 2.5em;
+  width: 100%;
+}
 
 .welcome-tabs {
   width: 100%;
   height: 20px;
-  margin: 25px auto 10px auto;
+  margin: 0 auto 10px auto;
+}
+
+.tabs {
+  /*border: 1px solid black;*/
+  background-color: #E1E1E0;
+  cursor: pointer;
+  float: left;
+  font-family: "Helvetica Neue,Helvetica,Arial,sans-serif";
+  font-weight: bold;
+  list-style: none;
+  width: 14%;
+}
+
+.welcome-tabs {
+  width: 100%;
+  height: 20px;
+  margin: 0 auto 10px auto;
 }
 
 .tabs {
@@ -17,3 +61,5 @@
   width: 14%;
   text-align: center;
 }
+
+

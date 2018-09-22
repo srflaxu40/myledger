@@ -1,6 +1,19 @@
-import React, { Component } from 'react';
+// Stylings:
 import '../css/base.css';
 import '../css/welcome.css';
+
+// Images:
+import plus_sign from '../images/open-iconic-master/svg/plus.svg';
+import bar_chart from '../images/open-iconic-master/svg/bar-chart.svg';
+
+// Components:
+import GraphPicker from './GraphPicker';
+
+// React:
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
+
 import { GoogleLogout } from 'react-google-login';
 
 import GridLayout from 'react-grid-layout';
@@ -29,6 +42,16 @@ class Welcome extends Component {
       this.props.history.push('/');
     }
   }*/
+
+  getPanel = (e) => {
+    e.preventDefault();
+    console.log(e.target.id);
+    ReactDOM.render(
+      <GraphPicker />,
+      document.getElementById('popup-div')
+    );
+  }
+
   clearTokens = (cookie) => {
     fetch('/auth/jwt-token', {
         method: "DELETE",
@@ -59,13 +82,18 @@ class Welcome extends Component {
     ];
 
     const logout = () => {
-      console.log("here");
       this.clearTokens("jwt");
       this.props.history.push('/');
     }
 
     return (
       <div className="body-div">
+         <div className="button-div">
+           <button id="add_chart" onClick={this.getPanel} className="addButton"><img id="add_chart" src={bar_chart}/></button>
+           <button id="add_chart2" onClick={this.getPanel} className="addButton"><img id="add_chart2" src={plus_sign}/></button>
+         </div>
+         <div className="popup-div" id="popup-div">
+         </div>
        <Tabs>
         <TabList className="welcome-tabs">
           <Tab className="tabs">Portolio</Tab>
@@ -77,46 +105,56 @@ class Welcome extends Component {
           <Tab className="tabs">Market</Tab>
         </TabList>
         <TabPanel>
-         {/* Portfolio */}
-         <div className="grid-container">
-          <GridLayout className="layout" layout={layout} cols={12} rowHeight={30} width={width}>
-           <div key="a" className="grid-item">
-               <GoogleLogout
-                  buttonText="Logout"
-                  onLogoutSuccess={logout}
-                  className="button p-3 mb-2 bg-primary logout submit grid-item"
-               >
-             </GoogleLogout>
-           </div>
-           <div key="b" className="grid-item">Column</div>
-           <div key="c" className="grid-item">Column</div>
-          </GridLayout>
-         </div>
-        </TabPanel>
-        <TabPanel>
           {/* Profile */}
           <h2>Profile</h2>
         </TabPanel>
-        <TabPanel>
-          {/* Stocks */}
-          <h2>Stocks</h2>
-        </TabPanel>
-        <TabPanel>
-          {/* Bonds */}
-          <h2>Bonds</h2>
-        </TabPanel>
-        <TabPanel>
-          {/* Wallet */}
-          <h2>Wallet</h2>
-        </TabPanel>
-        <TabPanel>
-          {/* News */}
-          <h2>News</h2>
-        </TabPanel>
-        <TabPanel>
-          {/* Market */}
-          <h2>Market</h2>
-        </TabPanel>
+        <div className="grid-container">
+          <TabPanel>
+           {/* Portfolio */}
+            <GridLayout className="layout" layout={layout} cols={12} rowHeight={30} width={width}>
+             <div key="a" className="grid-item">
+                 <GoogleLogout
+                    buttonText="Logout"
+                    onLogoutSuccess={logout}
+                    className="button p-3 mb-2 bg-primary logout submit grid-item"
+                 >
+               </GoogleLogout>
+             </div>
+             <div key="b" className="grid-item">Column</div>
+             <div key="c" className="grid-item">Column</div>
+            </GridLayout>
+          </TabPanel>
+        </div>
+        <div className="grid-container">
+          <TabPanel>
+            {/* Stocks */}
+            <h2>Stocks</h2>
+          </TabPanel>
+        </div>
+        <div className="grid-container">
+          <TabPanel>
+            {/* Bonds */}
+            <h2>Bonds</h2>
+          </TabPanel>
+        </div>
+        <div className="grid-container">
+          <TabPanel>
+            {/* Wallet */}
+            <h2>Wallet</h2>
+          </TabPanel>
+        </div>
+        <div className="grid-container">
+          <TabPanel>
+            {/* News */}
+            <h2>News</h2>
+          </TabPanel>
+        </div>
+        <div className="grid-container">
+          <TabPanel>
+            {/* Market */}
+            <h2>Market</h2>
+          </TabPanel>
+        </div>
        </Tabs>
       </div>
     );

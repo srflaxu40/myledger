@@ -13,7 +13,8 @@ import { Provider } from 'react-redux'
 import id from './store/auth/reducers'
 //import * as actions from './store/auth/actions';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/react-grid-layout/css/styles.css';
 import '../node_modules/react-resizable/css/styles.css';
 
