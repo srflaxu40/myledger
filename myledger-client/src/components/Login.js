@@ -40,7 +40,6 @@ class Login extends Component {
         body: JSON.stringify(payload), // body data type must match "Content-Type" header
       })
       .then(res => {
-          console.log(res);
           return res.json()
       });
 
@@ -59,7 +58,6 @@ class Login extends Component {
       });
 
     this.props.googleLoginSuccess(payload);
-    console.log(payload.googleId);
     this.props.set_id(payload.googleId);
     this.props.history.push('/welcome');
   }

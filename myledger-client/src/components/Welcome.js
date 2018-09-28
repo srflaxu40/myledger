@@ -28,7 +28,7 @@ import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
 
 const mapStateToProps = (state, props) => {
-   return {current: state};
+   return {state: state};
 }; 
 
 const mapDispatchToProps = (dispatch) => (
@@ -38,7 +38,10 @@ const mapDispatchToProps = (dispatch) => (
 
 class Welcome extends Component {
   componentDidMount() {
-    console.log(this.props);
+    if ( !this.props.state ) {
+      this.clearTokens("jwt");
+      this.props.history.push('/');
+    }
   }
  
   constructor(props) {

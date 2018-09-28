@@ -16,7 +16,6 @@ export const set_id = (id) => ({
 });
 
 export const googleLoginSuccess = (payload) => {
-  console.log(payload);
   return { type: GOOGLE_LOGIN_SUCCESS,
            id: payload.googleId
   }
