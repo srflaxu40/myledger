@@ -23,7 +23,6 @@ class Login extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { googleId: "" };
   }
 
   handleSuccessfulLogin = (payload) => {
@@ -66,7 +65,7 @@ class Login extends Component {
   }
 
   render() {
-  
+
     return (
        <div className="loginDiv">
        <div className="bg-primary banner">MyLedger</div>

@@ -11,7 +11,6 @@ var jwt = require('jsonwebtoken');
 /* POST and respond with JWT for user session. */
 /* This does not verify JWT since it is setting it and sending it back. */
 router.post('/jwt', function(req, res, next) {
-
     var token = jwt.sign({
       name: req.body.w3.id,
       sub: req.body.googleId,
@@ -34,8 +33,6 @@ router.post('/jwt', function(req, res, next) {
 /* Set jwt cookie for downstream requests to API. */
 /* This does not verify JWT since it is setting it and sending it back. */
 router.post('/jwt-token', function(req, res, next) {
-    console.log(req.method);
-
     var token = jwt.sign({
       name: req.body.w3.id,
       sub: req.body.googleId,
@@ -47,19 +44,26 @@ router.post('/jwt-token', function(req, res, next) {
 
 });
 
-/* DELETE cookie and CLEAR jwt token */
+/* DELETE cookie and CLEAR jwt token on logout */
 router.delete('/jwt-token', function(req, res, next) {
-    cookies = Cookie.parseCookies(req);
-    //console.log(cookies.jwt);
-    result = Cookie.verifyJwt(cookies.jwt);
-    console.log(result);
+    //cookies = Cookie.parseCookies(req);
+    console.log(req.cookies.jwt);
+    result = Cookie.verifyJwt(req.cookies.jwt);
     if ( result ) {
-      res.clearCookie("jwt");
+      console.log(result);
+      Cookie.deleteAllCookies();
+      //res.clearCookie("jwt");
       res.sendStatus(200);
     } else {
       res.sendStatus(400);
     }
+});
 
+/* RETRIEVE jwt token */
+router.get('/loggedin', function(req, res, next) {
+    console.log(req.cookies); 
+    //res.json({jwt: req.cookies.jwt});
+    res.send('hello world');
 });
 
 module.exports = router;

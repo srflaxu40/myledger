@@ -14,7 +14,6 @@ const id = (state, action) => {
       console.log(action);
       return { ...state, id: action.id };
     case GOOGLE_LOGIN_SUCCESS:
-      console.log(state);
       console.log(action);
       return { ...state, id: action.id };
     case GOOGLE_LOGIN_FAILURE:

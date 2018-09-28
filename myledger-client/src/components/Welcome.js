@@ -27,9 +27,9 @@ import * as Actions from '../store/auth/actions'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
 
-const mapStateToProps = (state, props) => ({
-    state: state
-}); 
+const mapStateToProps = (state, props) => {
+   return {current: state};
+}; 
 
 const mapDispatchToProps = (dispatch) => (
     bindActionCreators(Actions, dispatch)
@@ -37,17 +37,35 @@ const mapDispatchToProps = (dispatch) => (
 
 
 class Welcome extends Component {
-  /*componentWillMount() {
-    if ( ! window.localStorage.getItem('googleId') ) {
-      this.props.history.push('/');
-    }
-  }*/
+  componentDidMount() {
+    console.log(this.props);
+  }
+ 
+  constructor(props) {
+    super(props);
+    this.state = { close: true };
+    this.hidePanel = this.hidePanel.bind(this);
+  }
 
   getPanel = (e) => {
     e.preventDefault();
-    console.log(e.target.id);
+
+    if ( this.state.close == false ) { 
+      this.setState( { close: true } );
+    } else {
+      this.setState( { close: false } );
+      ReactDOM.render(
+        <GraphPicker hidePanel={this.hidePanel} close={this.state.close}/>,
+        document.getElementById('popup-div')
+      );
+    }
+  }
+
+  hidePanel(e) {
+    e.preventDefault();
+    this.setState( { close: true } );
     ReactDOM.render(
-      <GraphPicker />,
+      <GraphPicker hidePanel={this.hidePanel} close={this.state.close}/>,
       document.getElementById('popup-div')
     );
   }
@@ -66,10 +84,6 @@ class Welcome extends Component {
       });
   }
 
-  //componentDidMount() {
-    //var googleId = window.localStorage.getItem('googleId');
-    //this.props.set_id(googleId);
-  //}
 
   render() {
 

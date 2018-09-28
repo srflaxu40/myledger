@@ -9,9 +9,6 @@ export const SET_GOOGLE_ID = 'SET_GOOGLE_ID';
 /*
  * action creators
  */
-/*export function get_id() {
-  return { type: GOOGLE_ID, GOOGLE_ID
-}*/
 
 export const set_id = (id) => ({
   type: SET_GOOGLE_ID,

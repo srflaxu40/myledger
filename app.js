@@ -6,6 +6,7 @@ const tracer = new Tracer({
 });
 console.log("HERE WE GO");
 
+var Cookies = require('./utils.js');
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config({path: __dirname + '/.env'});
@@ -42,6 +43,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', indexRouter);
+app.use('/auth/', authRouter);
+
+// Verify Jwt first or log them out:
+/*app.use(function(req, res, next) {
+   var result = Cookies.verifyJwt(req.cookies.jwt);
+   result = false;
+   if ( !result ) {
+      console.log("here is result");
+      console.log(result);
+   } else {
+      console.log(result);
+   }
+});*/
 
 app.use('/', indexRouter);
 app.use('/auth/', authRouter);

@@ -47,6 +47,14 @@
   overflow: auto;
 }
 
+.splash {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: #f6f6f6;
+}
+
 .formGroup {
   border-radius: 0 !important;
 }
@@ -63,6 +71,7 @@
 .grid-container {
   display: grid;
   height: 100%;
+  width: 100%;
 }
 
 .grid-item {
@@ -75,7 +84,6 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: green;
 }
 
 .login {
@@ -93,6 +101,7 @@ html, body {
   border-color: #E1E1E0;
   border-top-color: #007bff;
   width: 20%;
+  background-color: #fff;
 }
 
 .logout {
