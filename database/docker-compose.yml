@@ -1,0 +1,15 @@
+version: '3.0'
+services:
+  db:
+    image: postgres:9.5.14
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: abc123
+      POSTGRES_USER: myledger
+      POSTGRES_DB: myledger
+    volumes:
+     - "pgdata:/var/lib/postgresql/data"
+volumes:
+  pgdata:
