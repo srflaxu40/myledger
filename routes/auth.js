@@ -11,32 +11,24 @@ var jwt = require('jsonwebtoken');
 /* This does not verify JWT since it is setting it and sending it back. */
 router.post('/jwt', function(req, res, next) {
     var token = jwt.sign({
-      name: req.body.w3.id,
+      name: req.body.w3.ig,
       sub: req.body.googleId,
       iss: "Google"
-    }, process.env.JWT_SECRET_KEY);
+    }, process.env.JWT_SECRET_KEY)
 
-    console.log(req.body.w3.id);
-
-/*    Auth.update({ name: req.body.w3.id, jwt: token, googleId: req.body.googleId }, {upsert:true}, function (err) {
-      if (err) {
-        console.log("Error in creation of Auth collection document: " + err);
-      }
-    });
-*/
-pool.connect()
-  .then(client => {
-    return client.query("SELECT * FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND schemaname != 'information_schema';")
-      .then(res => {
-        client.release()
-        console.log(res)
+    //name | jwt | googleid | googleemail | imageurl | givenname | familyname
+    pool.connect()
+      .then(client => {
+        return client.query("INSERT INTO myledger(name, jwt, googleid, googleemail, imageurl, givenname, familyname) VALUES($1, $2, $3, $4, $5, $6, $7)", [req.body.w3.ig, token, req.body.googleId, req.body.profileObj.email, req.body.profileObj.imageUrl, req.body.profileObj.givenName, req.body.profileObj.familyName])
+          .then(res => {
+            client.release()
+            console.log(res)
+          })
+          .catch(e => {
+            client.release()
+            console.log(e);
+          })
       })
-      .catch(e => {
-        client.release()
-        console.log(err.stack)
-      })
-  })
-
 
     res.json({
       jwt: token
