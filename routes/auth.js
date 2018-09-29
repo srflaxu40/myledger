@@ -48,22 +48,26 @@ router.post('/jwt-token', function(req, res, next) {
 router.delete('/jwt-token', function(req, res, next) {
     //cookies = Cookie.parseCookies(req);
     console.log(req.cookies.jwt);
-    result = Cookie.verifyJwt(req.cookies.jwt);
-    if ( result ) {
-      console.log(result);
-      Cookie.deleteAllCookies();
-      //res.clearCookie("jwt");
-      res.sendStatus(200);
+    if ( req.cookies.jwt == undefined ) {
+        //Cookie.deleteAllCookies(req);
+        res.sendStatus(200);
     } else {
-      res.sendStatus(400);
+      result = Cookie.verifyJwt(req.cookies.jwt);
+    
+      if ( result ) {
+        //Cookie.deleteAllCookies(req);
+        res.clearCookie("jwt");
+        res.sendStatus(200);
+      } else {
+        res.sendStatus(400);
+      }
     }
 });
 
 /* RETRIEVE jwt token */
 router.get('/loggedin', function(req, res, next) {
     console.log(req.cookies); 
-    //res.json({jwt: req.cookies.jwt});
-    res.send('hello world');
+    res.json({jwt: req.cookies.jwt});
 });
 
 module.exports = router;

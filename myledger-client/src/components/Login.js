@@ -8,21 +8,46 @@ import { GoogleLogin } from 'react-google-login';
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
 
-import {set_id, googleLoginSuccess, googleLoginFailure} from '../store/auth/actions';
+import {set_jwt, set_id, googleLoginSuccess, googleLoginFailure} from '../store/auth/actions';
 
-const mapStateToProps = (state) => ({
-    state: state
-});
+const mapStateToProps = (state,props) => {
+    return {state: state};
+};
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators({set_id, googleLoginSuccess, googleLoginFailure}, dispatch)
+    bindActionCreators({set_jwt, set_id, googleLoginSuccess, googleLoginFailure}, dispatch)
 
 
 class Login extends Component {
-  componentDidMount() {}
-
   constructor(props) {
     super(props);
+    this.state = {}
+    //this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    var that = this;
+    fetch('/auth/loggedin', {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, cors, *same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, same-origin, *omit
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        redirect: "follow", // manual, *follow, error
+        referrer: "no-referrer", // no-referrer, *client
+      })
+      .then(response => {  
+        return response.json();
+      })
+      .then(function(data) {
+        if ( data.jwt ) {
+           that.props.set_jwt(data.jwt);
+           that.props.history.push('/welcome');
+        }
+      });
   }
 
   handleSuccessfulLogin = (payload) => {

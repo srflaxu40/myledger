@@ -1,6 +1,7 @@
 
 import {
   SET_GOOGLE_ID,
+  SET_JWT,
   GOOGLE_LOGIN_FAILURE,
   GOOGLE_LOGIN_SUCCESS
 } from './actions'
@@ -14,6 +15,8 @@ const id = (state, action) => {
       return { ...state, id: action.id };
     case GOOGLE_LOGIN_FAILURE:
       return { ...state, id: action.id };
+    case SET_JWT:
+      return { ...state, jwt: action.jwt };
     default:
       return state;
   }

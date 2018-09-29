@@ -38,10 +38,29 @@ const mapDispatchToProps = (dispatch) => (
 
 class Welcome extends Component {
   componentDidMount() {
-    if ( !this.props.state ) {
-      this.clearTokens("jwt");
-      this.props.history.push('/');
-    }
+    var that = this;
+    fetch('/auth/loggedin', {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, cors, *same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, same-origin, *omit
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            // "Content-Type": "application/x-www-form-urlencoded",
+        },  
+        redirect: "follow", // manual, *follow, error
+        referrer: "no-referrer", // no-referrer, *client
+      })  
+      .then(response => {   
+        return response.json();
+      })  
+      .then(function(data) {
+        if ( data.jwt ) { 
+           that.props.set_jwt(data.jwt);
+        } else {
+           that.props.history.push('/');
+        }
+       });
   }
  
   constructor(props) {
