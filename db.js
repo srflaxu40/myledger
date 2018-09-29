@@ -1,36 +1,11 @@
-//var MongoClient = require('mongodb').MongoClient
-var mongoose = require('mongoose');
+// Pg init
+const { Pool } = require('pg');
+const pool = new Pool()
 
-var state = {
-  db: null,
-}
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err)
+  process.exit(-1)
+});
 
-exports.connect = function(url, done) {
-  if (state.db) return done()
+module.exports = pool;
 
-  mongoose.connect(url);
- 
-  var db = mongoose.connection;
-
-  db.on('error', function(err){
-    console.log('connection error', err);
-    return done(err)
-  });
- 
-  db.once('open', function(){
-    console.log('Connection to DB successful');
-    state.db = db
-    done()
-  });
-}
-
-exports.get = function() {
-  return state.db
-}
-
-exports.close = function(done) {
-  if (state.db) {
-    state.db.close()
-    done()
-  }
-}

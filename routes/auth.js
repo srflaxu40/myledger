@@ -1,8 +1,7 @@
 var express = require('express');
-var db = require('../db')
 var router = express.Router();
-var mongoose = require('mongoose');
-var Auth = require('../models/Auth.js');
+
+const pool = require('../db');
 
 var Cookie = require('../utils.js');
 
@@ -19,12 +18,26 @@ router.post('/jwt', function(req, res, next) {
 
     console.log(req.body.w3.id);
 
-    Auth.update({ name: req.body.w3.id, jwt: token, googleId: req.body.googleId }, {upsert:true}, function (err) {
+/*    Auth.update({ name: req.body.w3.id, jwt: token, googleId: req.body.googleId }, {upsert:true}, function (err) {
       if (err) {
         console.log("Error in creation of Auth collection document: " + err);
       }
     });
-  
+*/
+pool.connect()
+  .then(client => {
+    return client.query("SELECT * FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND schemaname != 'information_schema';")
+      .then(res => {
+        client.release()
+        console.log(res)
+      })
+      .catch(e => {
+        client.release()
+        console.log(err.stack)
+      })
+  })
+
+
     res.json({
       jwt: token
     });
