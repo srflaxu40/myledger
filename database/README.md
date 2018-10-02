@@ -1,12 +1,16 @@
 # postgres
----
 
 ## Notes:
 * This uses postgres 9.5.2, because we know AWS supports 9.5.2.
 
+## Docker setup:
+* [Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
 
 ## Setup
-`docker-compose up -d`
+* In this database directory
+```
+docker-compose up -d
+```
 
 * Your container should be running now:
 `docker ps`
