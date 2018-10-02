@@ -37,4 +37,6 @@ psql -h 127.0.0.1 -d myledger -U myledger -a -f create-2018-09-28.sql
 ```
 
 * You can interact with your database by running:
-`psql -h 127.0.0.1 -U myledger -W`
+```
+psql -h 127.0.0.1 -U myledger -W
+```
