@@ -55,7 +55,7 @@ const Root = () => {
 
   return (
     <Provider store={store}>
-      <div className="base">
+      <div>
         <Router history={Router}>
           <div>
             <Route exact path="/" component={Login}/>

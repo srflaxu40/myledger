@@ -111,3 +111,11 @@ html, body {
   cursor: pointer;
   font-family: "Helvetica Neue,Helvetica,Arial,sans-serif";
 }
+
+.welcome {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: #fff;
+}

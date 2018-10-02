@@ -37,6 +37,7 @@ const mapDispatchToProps = (dispatch) => (
 
 
 class Welcome extends Component {
+
   componentDidMount() {
     var that = this;
     fetch('/auth/loggedin', {
@@ -108,6 +109,8 @@ class Welcome extends Component {
 
 
   render() {
+    document.getElementById("body").classList.remove('base');
+    document.getElementById("body").classList.add('welcome');
 
     var width = window.innerWidth;
 

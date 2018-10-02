@@ -88,6 +88,8 @@ class Login extends Component {
   }
 
   render() {
+    document.getElementById("body").classList.remove('welcome');
+    document.getElementById("body").classList.add('base');
 
     return (
        <div className="loginDiv">
