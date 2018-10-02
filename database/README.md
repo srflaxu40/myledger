@@ -24,7 +24,7 @@ docker-compose up -d
 docker ps
 ```
 
-* [postgres docker librrary](https://hub.docker.com/_/postgres/)
+* [postgres docker library](https://hub.docker.com/_/postgres/)
 * [node-postgres example stuff](https://node-postgres.com/)
 
 ## Install schemas:
