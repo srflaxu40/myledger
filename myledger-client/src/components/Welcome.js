@@ -88,7 +88,7 @@ class Welcome extends Component {
     e.preventDefault();
     this.setState( { close: true } );
     ReactDOM.render(
-      <GraphPicker hidePanel={this.hidePanel} close={this.state.close}/>,
+      <div/>,
       document.getElementById('popup-div')
     );
   }

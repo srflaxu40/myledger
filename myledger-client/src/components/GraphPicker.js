@@ -20,6 +20,7 @@ class GraphPicker extends Component {
   }
 
   close = (e) => {
+    e.preventDefault();
     this.setState( { close: false } );
   }
 
@@ -28,7 +29,7 @@ class GraphPicker extends Component {
     var width = 100;
 
     var layout = [ 
-      {i: 'a', x: 0, y: 0, w: 1, h: 2}
+      {i: 'a', x: 0, y: 0, w: 1, h: 1}
     ];  
 
 
