@@ -2,23 +2,11 @@
 
 ## Developer Setup:
 
-This is a MERN stack application that uses mongoose ORM with MongoDB.
+This is an ERN stack application (yes, no 'M' no mongo) that uses npm `pg` and postgres.
 
-* Install MongoDB:
-```
-npm install mongodb@2.2 --save
-```
-
-* Create data, and log directories:
-```
-mkdir -p data logs
-chmod +755 ./data
-chmod +755 ./logs
-```
-* Start mongod process in the background:
-```
-mongod --fork --logpath ./logs/mongod.log --dbpath=./data/
-```
+* First setup the database:
+`cd databases`
+  * There is a README in here with instructions on standing up docker with postgres.
 
 * Install Express and NodeJS modules:
 ```
