@@ -34,14 +34,14 @@ class GraphPicker extends Component {
 
     if ( this.props.close ) {
       return (
-        <GridLayout className="layout" cols={12} rowHeight={width*3} width={width}>
+        <GridLayout className="layout" cols={12} rowHeight={width*3} width={width} isDraggable={false} isResizable={false}>
           <div key="a" id="choose" className="choose grid-item"><div className="close-button"><img src={close_button} onClick={this.props.hidePanel} /></div></div>
         </GridLayout>
       );
     } else {
       return (
         <GridLayout className="layout" cols={12} rowHeight={width*3} width={width}>
-          <div key="a" id="choose" className="hide grid-item"><div className="close-button"><img src={close_button} onClick={this.props.hidePanel} /></div></div>
+          <div key="a" id="choose" className="hide grid-item"><div className="close-button" isDraggable={false} isResizable={false}><img src={close_button} onClick={this.props.hidePanel} /></div></div>
         </GridLayout>
       );
     }
