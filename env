@@ -1,0 +1,12 @@
+REACT_APP_HOST=localhost
+REACT_APP_GOOGLE_CLIENT_ID=<get this from john>
+REACT_APP_NODE_ENV=development
+JWT_SECRET_KEY="@1e1,n[hq0rJ'"
+PGHOST='localhost'
+PGUSER='myledger'
+PGDATABASE='myledger'
+PGPASSWORD='abc123'
+PGPORT=5432
+
+# TO DO get rid of:
+MONGO_SERVER=localhost
