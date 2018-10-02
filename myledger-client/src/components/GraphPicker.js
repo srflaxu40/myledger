@@ -6,6 +6,8 @@ import '../css/graphpicker.css'
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+import GridLayout from 'react-grid-layout';
+
 // images
 import close_button from '../images/open-iconic-master/svg/x.svg';
 
@@ -22,13 +24,25 @@ class GraphPicker extends Component {
   }
 
   render() {
+
+    var width = 100;
+
+    var layout = [ 
+      {i: 'a', x: 0, y: 0, w: 1, h: 2}
+    ];  
+
+
     if ( this.props.close ) {
       return (
-        <div id="choose" className="choose"><div className="close-button"><img src={close_button} onClick={this.props.hidePanel} /></div></div>
+        <GridLayout className="layout" cols={12} rowHeight={width*3} width={width}>
+          <div key="a" id="choose" className="choose grid-item"><div className="close-button"><img src={close_button} onClick={this.props.hidePanel} /></div></div>
+        </GridLayout>
       );
     } else {
       return (
-        <div id="choose" className="hide"><div className="close-button"><img src={close_button} onClick={this.props.hidePanel} /></div></div>
+        <GridLayout className="layout" cols={12} rowHeight={width*3} width={width}>
+          <div key="a" id="choose" className="hide grid-item"><div className="close-button"><img src={close_button} onClick={this.props.hidePanel} /></div></div>
+        </GridLayout>
       );
     }
   }

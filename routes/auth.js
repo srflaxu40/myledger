@@ -19,7 +19,7 @@ router.post('/jwt', function(req, res, next) {
     //name | jwt | googleid | googleemail | imageurl | givenname | familyname
     pool.connect()
       .then(client => {
-        return client.query("INSERT INTO myledger(name, jwt, googleid, googleemail, imageurl, givenname, familyname) VALUES($1, $2, $3, $4, $5, $6, $7)", [req.body.w3.ig, token, req.body.googleId, req.body.profileObj.email, req.body.profileObj.imageUrl, req.body.profileObj.givenName, req.body.profileObj.familyName])
+        return client.query("INSERT INTO auth(name, jwt, googleid, googleemail, imageurl, givenname, familyname) VALUES($1, $2, $3, $4, $5, $6, $7)", [req.body.w3.ig, token, req.body.googleId, req.body.profileObj.email, req.body.profileObj.imageUrl, req.body.profileObj.givenName, req.body.profileObj.familyName])
           .then(res => {
             client.release()
             console.log(res)
