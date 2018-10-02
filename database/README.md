@@ -8,6 +8,12 @@
 ## Setup
 `docker-compose up -d`
 
+* Your container should be running now:
+`docker ps`
+
+* You can connect to it by:
+`psql -h 127.0.0.1 -U myledger -W`
+
 * [postgres docker librrary](https://hub.docker.com/_/postgres/)
 * [node-postgres example stuff](https://node-postgres.com/)
 
