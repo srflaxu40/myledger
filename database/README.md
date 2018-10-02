@@ -11,9 +11,6 @@
 * Your container should be running now:
 `docker ps`
 
-* You can connect to it by:
-`psql -h 127.0.0.1 -U myledger -W`
-
 * [postgres docker librrary](https://hub.docker.com/_/postgres/)
 * [node-postgres example stuff](https://node-postgres.com/)
 
@@ -22,6 +19,9 @@
 ```
 cd ./schemas
 
-psql -h 127.0.0.1 -d myledger -U myledger -a -f create-2018-09-28-20\:37.sql
+psql -h 127.0.0.1 -d myledger -U myledger -a -f create-2018-09-28.sql
 
 ```
+
+* You can interact with your database by running:
+`psql -h 127.0.0.1 -U myledger -W`
