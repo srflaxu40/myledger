@@ -3,10 +3,17 @@
 ## Notes:
 * This uses postgres 9.5.2, because we know AWS supports 9.5.2.
 
-## Docker setup:
+## Environment setup:
 * [Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
+* [Install Homebrew so you can use psql](https://brew.sh/)
+  * Then:
+```
+brew install postgresql
+# make sure you have psql cli by checking if it works:
+psql -h
+```
 
-## Setup
+## DB Setup
 * In this database directory
 ```
 docker-compose up -d
