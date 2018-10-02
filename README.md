@@ -1,6 +1,5 @@
 # myledger
 
----
    * [myledger](#myledger)
       * [Developer Setup:](#developer-setup)
       * [Run Express App:](#run-express-app)
