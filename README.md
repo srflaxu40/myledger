@@ -5,9 +5,14 @@
       * [Run Express App:](#run-express-app)
       * [Run React App:](#run-react-app)
 
+
 ## Developer Setup:
 
-This is an ERN stack application (yes, no 'M' no mongo) that uses npm `pg` and postgres.
+* Get `.env` file from John or James:
+
+   knepperjm@gmail.com
+
+* *This is an ERN stack application (yes, no 'M' no mongo) that uses npm `pg` and postgres.*
 
 * First setup the database:
 ```
