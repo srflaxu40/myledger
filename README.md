@@ -1,12 +1,20 @@
 # myledger
 
+---
+   * [myledger](#myledger)
+      * [Developer Setup:](#developer-setup)
+      * [Run Express App:](#run-express-app)
+      * [Run React App:](#run-react-app)
+
 ## Developer Setup:
 
 This is an ERN stack application (yes, no 'M' no mongo) that uses npm `pg` and postgres.
 
 * First setup the database:
-`cd databases`
-  * There is a README in here with instructions on standing up docker with postgres.
+```
+cd databases
+```
+  * There is a README in there with instructions on standing up docker with postgres.
 
 * Install Express and NodeJS modules:
 ```
