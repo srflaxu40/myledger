@@ -20,7 +20,9 @@ docker-compose up -d
 ```
 
 * Your container should be running now:
-`docker ps`
+```
+docker ps
+```
 
 * [postgres docker librrary](https://hub.docker.com/_/postgres/)
 * [node-postgres example stuff](https://node-postgres.com/)
