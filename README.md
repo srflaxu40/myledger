@@ -8,7 +8,7 @@
 
 ## Developer Setup:
 
-* Get `.env` file from John or James:
+* Get `.env` file from John:
 
    knepperjm@gmail.com
 
